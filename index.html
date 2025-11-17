@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Oleksandr Koretskyi – Particle & High-Energy Physics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --bg-secondary: #f5f5f7;
+      --bg-tertiary: #fbfbfd;
+      --bg-dark: #000000;
+      --bg-dark-secondary: #111111;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --text-tertiary: #a1a1a6;
+      --text-light: #ffffff;
+      --text-light-secondary: #e5e5e7;
+      --accent-blue: #0071e3;
+      --accent-blue-light: #2997ff;
+      --accent-blue-dark: #0056b3;
+      --border-light: #d2d2d7;
+      --border-lighter: #e8e8ed;
+      --border-dark: #333333;
+      --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
+      --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      --gradient-dark: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      --shadow-subtle: 0 4px 24px rgba(0, 0, 0, 0.04);
+      --shadow-medium: 0 10px 40px rgba(0, 0, 0, 0.06);
+      --shadow-dark: 0 10px 40px rgba(0, 0, 0, 0.2);
+      --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.03);
+      --transition-smooth: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --border-radius: 20px;
+      --border-radius-small: 12px;
+      --max-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      line-height: 1.47059;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------------- TYPOGRAPHY ---------------- */
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.022em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.028em;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.024em;
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    p {
+      font-size: 1.0625rem;
+      line-height: 1.47059;
+      color: var(--text-secondary);
+    }
+
+    .text-large {
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+
+    .text-small {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+    }
+
+    .text-uppercase {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all var(--transition-smooth);
+    }
+
+    .header-scrolled {
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-logo-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-light-secondary);
+      text-decoration: none;
+      position: relative;
+      transition: color var(--transition-smooth);
+      padding: 8px 0;
+    }
+
+    .nav-link:hover {
+      color: var(--text-light);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--text-light);
+      transition: width var(--transition-smooth);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background-color: var(--text-light);
+      margin: 4px 0;
+      transition: var(--transition-smooth);
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .hero-profile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .hero-image-container {
+      position: relative;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-image-edge {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.8) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 50%, rgba(0, 0, 0, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 70% 20%, rgba(0, 0, 0, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-image-smoke {
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      right: -50px;
+      bottom: -50px;
+      background: 
+        radial-gradient(circle at 30% 50%, rgba(0, 0, 0, 0.9) 0%, transparent 50%),
+        radial-gradient(circle at 70% 20%, rgba(0, 0, 0, 0.7) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+      filter: blur(25px);
+      border-radius: 50%;
+      z-index: 1;
+      opacity: 0.8;
+      animation: smokeFloat 8s ease-in-out infinite;
+    }
+
+    .hero-text {
+      color: var(--text-light);
+    }
+
+    .hero-name {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.5s forwards;
+      position: relative;
+    }
+
+    .hero-name-shine {
+      color: #ffffff;
+      position: relative;
+      display: inline-block;
+      animation: letterGlow 5s ease-in-out infinite;
+      text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.15),
+        0 0 40px rgba(255, 255, 255, 0.08),
+        0 0 60px rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-name-shine::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 25%,
+        rgba(255, 255, 255, 0.35) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: letterShine 6s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-light-secondary);
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.8s forwards;
+    }
+
+    /* ---------------- BUTTONS ---------------- */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border-radius: 980px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      border: none;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-blue-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 113, 227, 0.25);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-light);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-card {
+      background-color: var(--accent-blue);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+    }
+
+    .btn-card:hover {
+      background-color: var(--accent-blue-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 113, 227, 0.25);
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+
+    .section {
+      padding: 120px 0;
+    }
+
+    .section-light {
+      background-color: var(--bg-main);
+    }
+
+    .section-gray {
+      background-color: var(--bg-secondary);
+    }
+
+    .section-dark {
+      background: var(--gradient-dark);
+      color: var(--text-light);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+    }
+
+    /* ---------------- ABOUT ---------------- */
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+      margin-bottom: 40px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .about-details {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 60px;
+      font-weight: 400;
+      letter-spacing: -0.005em;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 80px;
+    }
+
+    .highlight-item {
+      text-align: center;
+    }
+
+    .highlight-item h4 {
+      color: var(--text-primary);
+      margin-bottom: 30px;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .highlight-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .highlight-tag {
+      padding: 10px 20px;
+      background-color: var(--bg-secondary);
+      border-radius: 25px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      transition: all var(--transition-smooth);
+      border: 1px solid var(--border-lighter);
+    }
+
+    .highlight-tag:hover {
+      background-color: var(--accent-blue);
+      color: white;
+      transform: translateY(-2px);
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    /* ---------------- EXPERIMENTS ---------------- */
+
+    .experiments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 32px;
+    }
+
+    .experiment-card {
+      background: var(--gradient-card);
+      border-radius: var(--border-radius);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+      transition: all var(--transition-smooth);
+      border: 1px solid var(--border-lighter);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experiment-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-smooth);
+    }
+
+    .experiment-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-medium);
+      border-color: var(--border-light);
+    }
+
+    .experiment-card:hover::before {
+      opacity: 1;
+    }
+
+    .experiment-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .experiment-logo {
+      height: 36px;
+      width: auto;
+      opacity: 0.8;
+      transition: opacity var(--transition-smooth);
+    }
+
+    .experiment-card:hover .experiment-logo {
+      opacity: 1;
+    }
+
+    .experiment-meta {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .experiment-title {
+      font-size: 1.375rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .experiment-description {
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .experiment-points {
+      list-style: none;
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+
+    .experiment-points li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .experiment-points li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .experiment-actions {
+      margin-top: auto;
+    }
+
+    /* ---------------- EDUCATION ---------------- */
+
+    .education-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .education-timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--border-light) 0%, transparent 100%);
+    }
+
+    .education-item {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 56px;
+    }
+
+    .education-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .education-item::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 8px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: var(--accent-blue);
+      border: 4px solid var(--bg-main);
+      box-shadow: 0 0 0 1px var(--border-light);
+      transition: all var(--transition-smooth);
+    }
+
+    .education-item:hover::before {
+      transform: scale(1.1);
+      box-shadow: 0 0 0 1px var(--accent-blue);
+    }
+
+    .education-degree {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 1.125rem;
+    }
+
+    .education-institution {
+      font-size: 1.125rem;
+      color: var(--accent-blue);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .education-details {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .education-date {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    /* ---------------- CONTACT ---------------- */
+
+    .contact-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-subtitle {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-bottom: 60px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 16px 28px;
+      background-color: var(--bg-main);
+      border: 1px solid var(--border-light);
+      border-radius: 30px;
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-subtle);
+      backdrop-filter: blur(20px);
+    }
+
+    .contact-pill:hover {
+      background-color: var(--accent-blue);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+      border-color: var(--accent-blue);
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    footer {
+      padding: 60px 0;
+      background-color: var(--bg-secondary);
+      text-align: center;
+      border-top: 1px solid var(--border-lighter);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-link {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-smooth);
+      font-weight: 500;
+    }
+
+    .footer-link:hover {
+      color: var(--text-primary);
+    }
+
+    .copyright {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    /* ---------------- ANIMATIONS ---------------- */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes smokeFloat {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-10px) scale(1.02);
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes letterGlow {
+      0%, 100% {
+        text-shadow: 
+          0 0 20px rgba(255, 255, 255, 0.15),
+          0 0 40px rgba(255, 255, 255, 0.08),
+          0 0 60px rgba(255, 255, 255, 0.03);
+        transform: scale(1);
+      }
+      50% {
+        text-shadow: 
+          0 0 30px rgba(255, 255, 255, 0.25),
+          0 0 60px rgba(255, 255, 255, 0.12),
+          0 0 90px rgba(255, 255, 255, 0.05);
+        transform: scale(1.0015);
+      }
+    }
+
+    @keyframes letterShine {
+      0%, 100% {
+        opacity: 0.3;
+        background-position: -100% 0;
+      }
+      50% {
+        opacity: 0.6;
+        background-position: 200% 0;
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--transition-bounce), transform 0.8s var(--transition-bounce);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 1024px) {
+      .hero-profile {
+        gap: 60px;
+      }
+      
+      .hero-image-container {
+        width: 380px;
+        height: 380px;
+      }
+      
+      .hero-name {
+        font-size: 3rem;
+      }
+      
+      .about-highlights {
+        gap: 60px;
+      }
+      
+      .about-text {
+        font-size: 1.3rem;
+      }
+      
+      .about-details {
+        font-size: 1.1rem;
+      }
+      
+      .experiments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(30px);
+        flex-direction: column;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-links.open {
+        display: flex;
+      }
+      
+      .nav-links .nav-link {
+        padding: 15px 24px;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      .nav-links .nav-link:last-child {
+        border-bottom: none;
+      }
+      
+      .nav-toggle {
+        display: block;
+      }
+      
+      .hero-content {
+        padding: 120px 0 80px;
+      }
+      
+      .hero-profile {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+      }
+      
+      .about-highlights {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+      
+      .experiments-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      
+      .hero-image-container {
+        width: 340px;
+        height: 340px;
+      }
+      
+      .hero-name {
+        font-size: 2.5rem;
+      }
+      
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-pill {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .about-text {
+        font-size: 1.2rem;
+      }
+      
+      .about-details {
+        font-size: 1.05rem;
+      }
+      
+      .section {
+        padding: 100px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 20px;
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+      
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+      
+      .hero-image-container {
+        width: 280px;
+        height: 280px;
+      }
+      
+      .hero-name {
+        font-size: 2.25rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .about-text {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+      }
+      
+      .about-details {
+        font-size: 1rem;
+        margin-bottom: 40px;
+      }
+      
+      .highlight-item h4 {
+        font-size: 1.2rem;
+      }
+      
+      .highlight-tag {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      
+      .experiment-card {
+        padding: 28px;
+      }
+      
+      .contact-pill {
+        padding: 14px 24px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header id="header">
+      <div class="container">
+        <nav class="nav">
+          <a href="#" class="nav-logo">
+            <span class="nav-logo-text">koretsky.io</span>
+          </a>
+          
+          <ul class="nav-links">
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#experiments" class="nav-link">Experiments</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+          
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-profile">
+          <div class="hero-image-container">
+            <div class="hero-image-smoke"></div>
+            <img src="profile-picture.jpg" alt="Oleksandr Koretskyi" class="hero-image" />
+            <div class="hero-image-edge"></div>
+            <div class="hero-image-overlay"></div>
+          </div>
+          
+          <div class="hero-text">
+            <h1 class="hero-name">
+              <span class="hero-name-shine" data-text="Oleksandr Koretskyi">Oleksandr Koretskyi</span>
+            </h1>
+            <p class="hero-subtitle">Particle & High-Energy Physics</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section section-light" data-reveal>
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">About</h2>
+          <p class="section-subtitle">
+            Focused on experimental physics and detector development
+          </p>
+        </div>
+        
+        <div class="about-content fade-in">
+          <p class="about-text">
+            Physics student at the University of Edinburgh and an alumnus of Kyiv-Mohyla Academy.
+          </p>
+          
+          <p class="about-details">
+            I have experience in data analysis research and experimental work at DESY and the European XFEL, where I tested detector prototypes and developed skills in Python-based analysis, experimental setup, reporting and presenting findings. These projects exposed me to new technical challenges and helped me build strong problem-solving and adaptability, key skills for an aspiring physicist.
+          </p>
+          
+          <p class="about-details">
+            Outside of work, I'm into running, chess, design and good coffee.
+          </p>
+          
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <h4>Research Keywords</h4>
+              <div class="highlight-tags">
+                <span class="highlight-tag">AGIPD</span>
+                <span class="highlight-tag">High-Z Detectors</span>
+                <span class="highlight-tag">CZT Sensors</span>
+                <span class="highlight-tag">ASICs</span>
+                <span class="highlight-tag">TEMPUS</span>
+                <span class="highlight-tag">Timepix4</span>
+                <span class="highlight-tag">Python</span>
+                <span class="highlight-tag">Luminescence</span>
+                <span class="highlight-tag">X-ray Science</span>
+                <span class="highlight-tag">Detector Prototypes</span>
+              </div>
+            </div>
+            
+            <div class="highlight-item">
+              <h4>Current Focus</h4>
+              <div class="highlight-tags">
+                <span class="highlight-tag">Experimental Physics</span>
+                <span class="highlight-tag">Particle & High-Energy Physics</span>
+                <span class="highlight-tag">Data-driven Analysis</span>
+                <span class="highlight-tag">Scientific Computing</span>
+                <span class="highlight-tag">Detector Characterisation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIMENTS -->
+    <section id="experiments" class="section section-gray">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Experiments</h2>
+          <p class="section-subtitle">
+            A snapshot of the projects I worked on at DESY and European XFEL.
+          </p>
+        </div>
+        
+        <div class="experiments-grid">
+          <!-- DESY Card -->
+          <div class="experiment-card fade-in">
+            <div class="experiment-header">
+              <div>
+                <div class="experiment-meta text-uppercase">Summer Student</div>
+                <h3 class="experiment-title">DESY Summer Student Programme</h3>
+              </div>
+              <img src="logo-desy.png" alt="DESY" class="experiment-logo" />
+            </div>
+            
+            <div class="experiment-meta">Hamburg, Germany · Jul 2024 – Sep 2024</div>
+            
+            <p class="experiment-description">
+              Characterisation of the first High-Z AGIPD detector prototypes
+            </p>
+            
+            <ul class="experiment-points">
+              <li>Set up detector modules and performed initial calibration runs</li>
+              <li>Summarised early results, identified and resolved issues</li>
+              <li>Collected data and performed Python-based analyses</li>
+              <li>Generated plots to study ASIC signal-shaping behaviour</li>
+              <li>Designed and 3D-printed a custom detector cover</li>
+            </ul>
+            
+            <div class="experiment-actions">
+              <a href="desy-report.pdf" class="btn btn-card" download>Download Report</a>
+            </div>
+          </div>
+          
+          <!-- European XFEL Card -->
+          <div class="experiment-card fade-in">
+            <div class="experiment-header">
+              <div>
+                <div class="experiment-meta text-uppercase">Beam User</div>
+                <h3 class="experiment-title">European XFEL – TEMPUS</h3>
+              </div>
+              <img src="logo-european-xfel.png" alt="European XFEL" class="experiment-logo" />
+            </div>
+            
+            <div class="experiment-meta">Schenefeld, Germany · Jul 2024 – Sep 2024</div>
+            
+            <p class="experiment-description">
+              Timepix4-based detector system testing under real beamline conditions
+            </p>
+            
+            <ul class="experiment-points">
+              <li>Tested early Timepix4-based prototypes during beamtime</li>
+              <li>Assisted with mechanical installation and detector setup</li>
+              <li>Quickly learned and adapted to the experiment's software tools</li>
+              <li>Troubleshot software issues by reviewing Python scripts</li>
+            </ul>
+          </div>
+          
+          <!-- PETRA III Card -->
+          <div class="experiment-card fade-in">
+            <div class="experiment-header">
+              <div>
+                <div class="experiment-meta text-uppercase">Beam User</div>
+                <h3 class="experiment-title">PETRA III · Beamline P66</h3>
+              </div>
+              <img src="logo-desy.png" alt="PETRA III" class="experiment-logo" />
+            </div>
+            
+            <div class="experiment-meta">Hamburg, Germany · 2023 – 2024</div>
+            
+            <p class="experiment-description">
+              Luminescence & structural analysis of RE-doped ZrO₂ ceramics
+            </p>
+            
+            <ul class="experiment-points">
+              <li>Conducted time-resolved luminescence spectroscopy</li>
+              <li>Collected and logged emission and excitation datasets</li>
+              <li>Assessed data relevance and quality, analysed results</li>
+              <li>Visualised signals using plots and 2D luminescence maps</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section section-light">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">
+            I have studied in three different academic environments, moving between Ukraine and the UK.
+          </p>
+        </div>
+        
+        <div class="education-timeline">
+          <!-- Edinburgh -->
+          <div class="education-item fade-in">
+            <div class="education-degree">B.Sc. in Physics</div>
+            <div class="education-institution">University of Edinburgh</div>
+            <div class="education-details">Edinburgh, UK</div>
+            <div class="education-date">Sep 2024 – Jul 2028 (current)</div>
+          </div>
+          
+          <!-- Glasgow -->
+          <div class="education-item fade-in">
+            <div class="education-degree">Exchange Programme (B.Sc. Physics)</div>
+            <div class="education-institution">University of Glasgow</div>
+            <div class="education-details">Glasgow, UK</div>
+            <div class="education-date">Jan 2024 – May 2024</div>
+          </div>
+          
+          <!-- Kyiv -->
+          <div class="education-item fade-in">
+            <div class="education-degree">B.Sc. in Physics and Astronomy</div>
+            <div class="education-institution">National University of Kyiv-Mohyla Academy</div>
+            <div class="education-details">Kyiv, Ukraine</div>
+            <div class="education-date">Sep 2021 – Jul 2025</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-gray">
+      <div class="container">
+        <div class="contact-content fade-in">
+          <h2 class="section-title">Contact</h2>
+          <p class="contact-subtitle">
+            If you would like to get in touch about physics, science, ideas or potential projects, feel free to reach out.
+            I am open to summer placements and internships, and I'm always glad to hear from people who are curious about
+            my work or have something interesting they'd like to discuss.
+          </p>
+          
+          <h3>Where to Find Me</h3>
+          
+          <div class="contact-links">
+            <a href="mailto:oleksandr.koretskyy@gmail.com" class="contact-pill">
+              oleksandr.koretskyy@gmail.com
+            </a>
+            <a href="https://instagram.com/koretskyio" target="_blank" class="contact-pill">
+              Instagram · @koretskyio
+            </a>
+            <a href="https://www.linkedin.com/in/oleksandr-koretskyi-a53020333" target="_blank" class="contact-pill">
+              LinkedIn · Oleksandr Koretskyi
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="#about" class="footer-link">About</a>
+            <a href="#experiments" class="footer-link">Experiments</a>
+            <a href="#education" class="footer-link">Education</a>
+            <a href="#contact" class="footer-link">Contact</a>
+          </div>
+          <div class="copyright">© <span id="year"></span> Oleksandr Koretskyi</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    });
+    
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        
+        // Animate hamburger to X
+        const spans = navToggle.querySelectorAll('span');
+        if (navLinks.classList.contains('open')) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      });
+    }
+    
+    // Scroll animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    fadeElements.forEach(el => {
+      fadeObserver.observe(el);
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // Close mobile menu if open
+          if (navLinks && navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            const spans = navToggle.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+          }
+          
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
